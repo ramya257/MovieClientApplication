@@ -11,14 +11,14 @@ const appRoutes: Routes=[
                     
                      { path: 'getmoviecategory',  component: MovieCategoryList},
                      { path: 'addmovie',  component: MovieComponent },
-                     {path:'search',component:MovieSearchComponent}
+					 {path:'search',component:MovieSearchComponent}
                       ];
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,MovieComponent
+    AppComponent,MovieComponent,MovieListComponent,MovieSearchComponent
   ],
   imports: [
     BrowserModule,FormsModule,HttpModule,RouterModule.forRoot(appRoutes)

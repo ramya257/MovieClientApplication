@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<head><title>Search Movies </title>
+</head>
+<body>
+<div *ngIf="isDataLoaded">
+
+<table>
+<caption>Search movie by category</caption>
+<tr><td>
+<select [(ngModel)]="categoryList.categoryId" (input)="onInput($event)">
+  <option *ngFor="category of categoryList" value= {{category.categoryId}}>{{category.categoryName}}</option>
+</select>
+
+<table>
+</div>
+
+</body>
+</html>

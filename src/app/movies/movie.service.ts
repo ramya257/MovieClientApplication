@@ -30,5 +30,13 @@ export class MovieService{
           .map((success => success.status));
       }
 
+	  
+	  searchMovieByCategory(data:string): Observable<Movie[]> {
+                console.log(data)
+                return this.http
+                    .get('http://localhost:8081/MovieServerApplication/rest/movie/search/'+data)
+                    .map((response:Response)=><Movie[]>response.json());
+                    
+                }
 
 }
