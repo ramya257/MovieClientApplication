@@ -1,12 +1,12 @@
 import { Injectable }      from '@angular/core';
-import {Movie} from './movies/Movie';
+import { map } from 'rxjs/operators';
 import {Http,Response,Headers, RequestOptions} from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import "rxjs/add/operator/map"
-import "rxjs/add/operator/catch"
+import { Movie } from "src/app/movies/Movie";
+import { Observable } from "rxjs";
+import { Category } from "src/app/movies/Category";
 
 
-@Injectible()
+@Injectable()
 export class MovieService{
   constructor(private http:Http){
 
@@ -14,9 +14,9 @@ export class MovieService{
 
 
 
-  getAllMovies: Observable<Movie[]>{
-    return this.http.get("http://localhost:8081/MovieServerApplication/rest/movie/getAllMovies/").
-    map((response:Response)=><Movie[]>response.json());
+  getAllMovies(): Observable<Movie[]>{
+    return this.http.get("http://localhost:8081/MovieWebApplication/rest/movie/getAllMovies/").
+    pipe(map((response: any) => response.json()));
   }
 
   addMovie(data:Movie): Observable<Movie[]> {
@@ -26,17 +26,44 @@ export class MovieService{
       let options = new RequestOptions({ headers: cpHeaders });
 
       return this.http
-          .post('http://localhost:8081/MovieServerApplication/rest/movie/create/',movieData,options)
-          .map((success => success.status));
+          .post('http://localhost:8081/MovieWebApplication/rest/movie/createMovie/',movieData,options).
+          pipe(map((response: any) => response.json()));
       }
 
 	  
-	  searchMovieByCategory(data:string): Observable<Movie[]> {
+    searchMovieByCategory(data:string): Observable<Movie[]> {
                 console.log(data)
+      let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: cpHeaders });
+
                 return this.http
-                    .get('http://localhost:8081/MovieServerApplication/rest/movie/search/'+data)
-                    .map((response:Response)=><Movie[]>response.json());
+                    .get('http://localhost:8081/MovieWebApplication/rest/movie/searchMovie/'+data).pipe(map((response: any) => response.json()));
                     
                 }
+    
+    getMovieCategory():Observable<Category[]>{
+     
+        return this.http.get('http://localhost:8081/MovieWebApplication/rest/movie/fetchCategory').pipe(map((response: any) => response.json()));
+        
+    }
+    
+    deleteMovie(movieId:number,movieGenre:string):Observable<Movie[]>{
+        
+        console.log(movieId);
+        console.log(movieGenre);
+        let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: cpHeaders });
+        return this.http.delete('http://localhost:8081/MovieWebApplication/rest/movie/deleteMovie/'+ movieId+'/'+movieGenre,options)
+        .pipe(map((response: any) => response.json()))
+        
+    }
+    
+    updateMovie(data:Movie):Observable<Movie[]>{
+        console.log(data);
+        let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: cpHeaders });
+        return this.http.put('http://localhost:8081/MovieWebApplication/rest/movie/updateMovie/',data,options)
+        .pipe(map((response: any) => response.json()))
+    }
 
 }

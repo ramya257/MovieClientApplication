@@ -1,18 +1,42 @@
-<!DOCTYPE html>
+<html>
 <head><title>Search Movies </title>
 </head>
 <body>
-<div *ngIf="isDataLoaded">
+<div *ngIf="isCategoryLoaded">
 
 <table>
-<caption>Search movie by category</caption>
-<tr><td>
-<select [(ngModel)]="categoryList.categoryId" (input)="onInput($event)">
-  <option *ngFor="category of categoryList" value= {{category.categoryId}}>{{category.categoryName}}</option>
-</select>
 
-<table>
+<tr><td>Select Movie Genre:</td>
+<td><select [(ngModel)]="movieCategory" name="moviesGenre">
+
+<option *ngFor="let c of categories" >{{c.categoryName}}</option>
+</select><br></td></tr>
+<tr>
+<td>
+<button (click)="searchMovie()">Search Movie</button></td>
+</tr>
+</table>
 </div>
+<br>
+<table border="1px solid black" *ngIf="isDataLoaded && moviesList?.length > 0">
+<tr>
+<th>Movie Name
+</th>
+<th>Movie Rating</th>
+<th>Movie Genre</th>
+<th>Operations</th>
+</tr>
+<tr  *ngFor="let movie of moviesList">
+<td>{{movie.moviesName}}
+</td>
+<td>{{movie.moviesRating}}
+</td>
+<td>{{movie.moviesGenre}}
+</td>
+<td>
+<button (click)="deleteMovie(movie.moviesId,movie.moviesGenre)">Delete</button></td>
+</tr>
+</table>
 
 </body>
 </html>

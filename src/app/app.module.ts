@@ -4,26 +4,28 @@ import { FormsModule } from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {Routes, RouterModule} from '@angular/router';
 import { AppComponent } from './app.component';
-import {MovieComponent} from './movies/app.moviecomponent'
+import { SearchMovieComponent } from "src/app/movies/app.searchmoviecomponent";
+import { AddMovieComponent } from "src/app/movies/app.addmoviecomponent";
+import { MovieComponent } from "src/app/movies/app.moviecomponent";
 
 
 const appRoutes: Routes=[
-                    
-                     { path: 'getmoviecategory',  component: MovieCategoryList},
-                     { path: 'addmovie',  component: MovieComponent },
-					 {path:'search',component:MovieSearchComponent}
+                     { path: 'createMovie',  component: AddMovieComponent },
+					 {path:'searchMovie',component:SearchMovieComponent},
+					 
+					 
                       ];
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,MovieComponent,MovieListComponent,MovieSearchComponent
+    AppComponent,MovieComponent,AddMovieComponent,SearchMovieComponent
   ],
   imports: [
     BrowserModule,FormsModule,HttpModule,RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
