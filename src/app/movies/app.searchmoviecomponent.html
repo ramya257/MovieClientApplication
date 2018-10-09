@@ -24,9 +24,9 @@
 </th>
 <th>Movie Rating</th>
 <th>Movie Genre</th>
-<th>Operations</th>
+<th colspan=2>Operations</th>
 </tr>
-<tr  *ngFor="let movie of moviesList">
+<tr  *ngFor="let movie of moviesList;let i=index">
 <td>{{movie.moviesName}}
 </td>
 <td>{{movie.moviesRating}}
@@ -34,9 +34,37 @@
 <td>{{movie.moviesGenre}}
 </td>
 <td>
-<button (click)="deleteMovie(movie.moviesId,movie.moviesGenre)">Delete</button></td>
+<button (click)="deleteMovie(i)">Delete</button></td>
+<td><button (click)="updateMovie(i)">Update</button></td>
 </tr>
 </table>
+
+
+<div *ngIf="isUpdateCategoryLoaded">
+<br>
+<form>
+<table>
+<tr><td>Enter Movie Name:</td>
+<td><input type="text" name="movieName" [(ngModel)]="model.moviesName"/><br></td></tr>
+
+<tr><td>Enter Movie Rating:</td>
+<td><input type="text" name="movieRating" [(ngModel)]="model.moviesRating"/><br><br></td></tr>
+
+<tr><td>Select Movie Genre:</td>
+<td><select  name="movieGenre" [(ngModel)]="model.moviesGenre">
+
+<option *ngFor="let c of categories">{{c.categoryName}}</option>
+</select><br></td></tr>
+<tr>
+<td>
+<button (click)="updateMovieData()">Update Movie</button></td>
+</tr>
+
+
+</table>
+</form>
+
+</div>
 
 </body>
 </html>

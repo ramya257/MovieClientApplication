@@ -58,8 +58,8 @@ export class MovieService{
         
     }
     
-    updateMovie(data:Movie):Observable<Movie[]>{
-        console.log(data);
+    updateMovie(data:any):Observable<Movie[]>{
+      
         let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: cpHeaders });
         return this.http.put('http://localhost:8081/MovieWebApplication/rest/movie/updateMovie/',data,options)
