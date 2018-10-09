@@ -55,9 +55,12 @@
 
 <option *ngFor="let c of categories">{{c.categoryName}}</option>
 </select><br></td></tr>
+<br>
 <tr>
 <td>
 <button (click)="updateMovieData()">Update Movie</button></td>
+<td>
+<button (click)="cancelUpdate()">Cancel</button></td>
 </tr>
 
 

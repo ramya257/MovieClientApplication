@@ -59,6 +59,12 @@ updateMovie(index:number):void{
 }
 updateMovieData():void{
     this.movieService.updateMovie(this.model).subscribe(moviesList=>{console.log(this.moviesList),this.isUpdateCategoryLoaded=false});
+  
+    
+}
+
+cancelUpdate():void{
+    this.isUpdateCategoryLoaded=false;
 }
 
 

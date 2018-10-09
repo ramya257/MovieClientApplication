@@ -7,12 +7,15 @@ import { AppComponent } from './app.component';
 import { SearchMovieComponent } from "src/app/movies/app.searchmoviecomponent";
 import { AddMovieComponent } from "src/app/movies/app.addmoviecomponent";
 import { MovieComponent } from "src/app/movies/app.moviecomponent";
+import { MovieListComponent } from "src/app/movies/app.movielistcomponent";
+
 
 
 
 const appRoutes: Routes=[
                      { path: 'createMovie',  component: AddMovieComponent },
 					 {path:'searchMovie',component:SearchMovieComponent},
+					 {path:'showMovies',component:MovieListComponent}
 					 
 					 
                       ];
@@ -21,7 +24,7 @@ const appRoutes: Routes=[
 
 @NgModule({
   declarations: [
-    AppComponent,MovieComponent,AddMovieComponent,SearchMovieComponent
+    AppComponent,MovieComponent,AddMovieComponent,SearchMovieComponent,MovieListComponent
   ],
   imports: [
     BrowserModule,FormsModule,HttpModule,RouterModule.forRoot(appRoutes)

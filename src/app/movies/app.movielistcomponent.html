@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>View All Movies</title>
+</head>
+<body>
+<!-- Show Movies -->
+<table align="center" border="1px solid black">
+<caption></caption>
+
+<tr>
+<th><button (click) = "sortName()">Movie Name</button></th>
+<th><button (click) = "sortRating()">Movie Rating</button></th>
+<th><button (click) = "sortGenre()">Movie Genre</button></th>
+</tr>
+
+<tr *ngFor="let movie of moviesList">
+
+<td>{{movie.moviesName}}</td>
+<td>{{movie.moviesRating}}</td>
+<td>{{movie.moviesGenre}}</td>
+</tr>
+</table>
+</body>
+</html>
