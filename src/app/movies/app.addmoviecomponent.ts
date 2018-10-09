@@ -32,6 +32,7 @@ constructor(private movieService:MovieService,private router:Router){
 addMovie():void{
   
   this.movieService.addMovie(this.model).subscribe((movieData)=>{this.movies=movieData,console.log(this.movies)});
+  this.router.navigate(['/showMovies']);
   
 
 }

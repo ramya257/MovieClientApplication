@@ -5,6 +5,7 @@ import { OnInit } from "@angular/core";
 import { Category } from "src/app/movies/Category";
 import { Movie } from "src/app/movies/Movie";
 import { Input } from "@angular/core";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -28,7 +29,7 @@ moviesName:string;
 model:any={};
 
 
-constructor(private movieService: MovieService){
+constructor(private movieService: MovieService,private router:Router){
 }
 
 ngOnInit() {
@@ -46,8 +47,7 @@ deleteMovie(index:number):void{
     this.movieService.deleteMovie(id,genre).subscribe(movies=>{this.moviesList=movies,this.isDataLoaded=true,console.log(this.moviesList)});
 }
 updateMovie(index:number):void{
-    console.log("here");
-    
+   
    this.movieService.getMovieCategory().subscribe(categoriesList=>{this.categories=categoriesList,this.isUpdateCategoryLoaded=true});
    
    this.model.moviesId=this.moviesList[index].moviesId;
@@ -59,6 +59,7 @@ updateMovie(index:number):void{
 }
 updateMovieData():void{
     this.movieService.updateMovie(this.model).subscribe(moviesList=>{console.log(this.moviesList),this.isUpdateCategoryLoaded=false});
+    this.router.navigate(['/showMovies']);
   
     
 }

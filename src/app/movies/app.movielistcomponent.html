@@ -10,10 +10,15 @@
 <caption></caption>
 
 <tr>
-<th><button (click) = "sortName()">Movie Name</button></th>
-<th><button (click) = "sortRating()">Movie Rating</button></th>
-<th><button (click) = "sortGenre()">Movie Genre</button></th>
+
+
+<tr>
+<th><button align="center" (click) = "sortName()">Movie Name</button></th>
+<th><button align="center" (click) = "sortRating()">Movie Rating</button></th>
+<th><button align="center" (click) = "sortGenre()">Movie Genre</button></th>
 </tr>
+
+
 
 <tr *ngFor="let movie of moviesList">
 
