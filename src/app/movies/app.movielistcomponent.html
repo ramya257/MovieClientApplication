@@ -4,18 +4,22 @@
 <meta charset="ISO-8859-1">
 <title>View All Movies</title>
 </head>
+<style>
+<style>
+table th:active{
+font-weight:light;
+color: #000000; 
+text-decoration:underline;
+}
+</style>
 <body>
 <!-- Show Movies -->
 <table align="center" border="1px solid black">
-<caption></caption>
 
 <tr>
-
-
-<tr>
-<th><button align="center" (click) = "sortName()">Movie Name</button></th>
-<th><button align="center" (click) = "sortRating()">Movie Rating</button></th>
-<th><button align="center" (click) = "sortGenre()">Movie Genre</button></th>
+<th (click) = "sortName()">Movie Name</th>
+<th (click) = "sortRating()">Movie Rating</th>
+<th (click) = "sortGenre()">Movie Genre</th>
 </tr>
 
 

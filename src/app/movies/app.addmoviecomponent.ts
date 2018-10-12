@@ -15,6 +15,11 @@ import { Category } from "src/app/movies/Category";
 
 export class AddMovieComponent implements OnInit{
     
+movieNamePattern = "[A-Za-z0-9]+"
+movieRatingPattern="^[1-5]\d*(\.\d+)?"
+
+  
+    
 movies:Movie[];
 model:any={};
 isDataLoaded:boolean=false;

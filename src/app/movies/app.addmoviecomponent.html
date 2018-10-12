@@ -4,27 +4,48 @@
 <meta charset="ISO-8859-1">
 <title>Add Movie</title>
 </head>
+<style>
+
+span{
+color:#FF6347;
+}
+#error{
+color:#1E90FF;
+}
+
+</style>
 <body>
 <div *ngIf="isDataLoaded">
 
 
-<form>
-<table>
+<form #movieForm=ngForm (ngSubmit)="addMovie()">
+<table >
 <tr><td>Enter Movie Name:</td>
-<td><input type="text" name="moviesName" [(ngModel)]='model.moviesName'/><br></td></tr>
+<td><input required type="text" name="moviesName" [pattern]=movieNamePattern autocomplete="off" [(ngModel)]='model.moviesName' #namecontrol="ngModel"/><br></td></tr>
+<tr><td><span  *ngIf="namecontrol.invalid && namecontrol.touched"> Movie Name is required!!</span></td></tr>
+<tr><td><div id="error" *ngIf=" namecontrol.errors?.pattern">Movie name should be alphanumeric only
+</div></td></tr>
 
 
 <tr><td>Enter Movie Rating:</td>
-<td><input type="text" name="moviesRating" [(ngModel)]='model.moviesRating'/><br><br></td></tr>
+<td><input required type="text" name="moviesRating" [pattern]=movieRatingPattern autocomplete="off" required [(ngModel)]='model.moviesRating' #ratingcontrol="ngModel"/><br><br></td></tr>
+<tr><td><span  *ngIf="ratingcontrol.invalid && ratingcontrol.touched"> Movie Rating is required!!</span></td>
+</tr>
+<tr><td><div id="error" *ngIf=" ratingcontrol.errors?.pattern">Rating needs to be number:eg:2.5.Rating is on Scale 1-5
+</div></td></tr>
 
 <tr><td>Select Movie Genre:</td>
-<td><select [(ngModel)]="model.moviesGenre" name="moviesGenre">
+<td><select required [(ngModel)]="model.moviesGenre" required name="moviesGenre" #genrecontrol="ngModel">
 
 <option *ngFor="let c of categories" >{{c.categoryName}}</option>
-</select><br><br></td></tr>
+</select><br><br>
+</td>
+</tr>
+<tr><td><span  *ngIf="genrecontrol.invalid && genrecontrol.touched" > Select Genre!!!</span></td>
+</tr>
 <tr>
 <td>
-<button (click)="addMovie()">Add Movie</button></td>
+<input type="submit" value="Add Movie" [disabled]="!movieForm.valid"/></td>
 </tr>
 
 
